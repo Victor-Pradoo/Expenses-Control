@@ -1,3 +1,5 @@
+using Microsoft.Extensions.Configuration;
+
 namespace Expenses_Control
 {
     public partial class Form1 : Form
@@ -15,15 +17,42 @@ namespace Expenses_Control
         private void button1_Click(object sender, EventArgs e)
         {
             decimal expenseValue;
+            string categoryName;
 
-            if(decimal.TryParse(txtExpenseValue.Text, out expenseValue) != true) 
+            if (decimal.TryParse(txtExpenseValue.Text, out expenseValue) != true) 
             {
                 MessageBox.Show("The expense value typed is not valid.");
                 txtExpenseValue.Text = "";
                 return; //to stop the method execution
             }
             else {
-                DataBaseControl.AddExpense();
+
+                DataBaseControl exp_control = new DataBaseControl();
+
+
+                if (listCate.SelectedItem != null)
+                {
+                    categoryName = listCate.SelectedItem.ToString();
+                    try
+                    {
+                        int idCategory = exp_control.selectCategoryID(categoryName);
+                        exp_control.AddExpense(expenseValue, dateExpensePicker.Value, idCategory);
+
+                        //cleaning fields for a new expense
+                        txtExpenseValue.Text = "";
+                        dateExpensePicker.Value = DateTime.Now;
+                        listCate.Items.Clear();
+
+                        MessageBox.Show("Expense correctly inserted.");
+                        return; //to stop the method execution
+                    }
+
+                    catch(Exception ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
+                }
+
             }
 
         }

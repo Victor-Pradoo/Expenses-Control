@@ -98,7 +98,7 @@
             listCate.FormattingEnabled = true;
             listCate.ItemHeight = 15;
             listCate.Items.AddRange(new object[] { "Housing", "Transportation", "Groceries", "Insurance", "Healthcare", "Debt Repayment", "Entertainment", "Personal Care", "Education", "Childcare" });
-            listCate.Location = new Point(32, 200);
+            listCate.Location = new Point(29, 203);
             listCate.Name = "listCate";
             listCate.Size = new Size(120, 94);
             listCate.TabIndex = 2;

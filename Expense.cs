@@ -12,9 +12,9 @@ namespace Expenses_Control
         public string Description { get; set; }
         public decimal Value { get; set; }
         public DateTime date { get; set; }
-        public Category Category { get; set; }
+        public string Category { get; set; }
 
-        public Expense(int Id, string Description, decimal Value, DateTime date, Category category) 
+        public Expense(int Id, string Description, decimal Value, DateTime date, string category) 
         {
             this.Id = Id;
             this.Description = Description;
